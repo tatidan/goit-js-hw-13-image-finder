@@ -1,32 +1,68 @@
-//import './sass/main.scss';
-console.log('check connection');
-//import config from './config.json';
+import './sass/main.scss';
+import debounce from 'lodash.debounce';
+import galleryCard from './templates/galleryCard.hbs';
+import ApiService from "./apiService";
+import { alert, defaultModules } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import * as PNotifyMobile from '@pnotify/mobile';
+import '@pnotify/mobile/dist/PNotifyMobile.css';
+import * as basicLightbox from 'basiclightbox'
 
-const BASE_URL = 'https://pixabay.com/api/';
+defaultModules.set(PNotifyMobile, {});
 
-const options = {
-webformatURL,
-largeImageURL,
-likes,
-views,
-comments,
-downloads,
-  // headers: {
-  //   "Content-Type": "application/json",
-  // }
+const refs = {
+  searchForm: document.querySelector("#search-form"),
+  input: document.querySelector(".input"),
+  response: document.querySelector(".response"),
+  gallery: document.querySelector(".gallery"),
+  //loadMoreBtn: document.querySelector("#load-more"),
 };
 
-function fetchPhotos() {
-  return fetch(`${BASE_URL}?`).then(res => res.json()).then(console.log);
- }
+const apiService = new ApiService();
 
- function fetchPhotosById(photoId) {
-  return fetch(`config.url + / + ${id}`).then(res => res.json()).then(console.log);
- }
+refs.searchForm.addEventListener(
+    'input',
+  debounce(() => {
+    if (!refs.input.value) {
+      refs.gallery.innerHTML = '';
+      return;
+    }   
 
-// import ApiService from "./apiService";
+    const searchQuery = `${refs.input.value}`;
+    console.log(searchQuery);
 
-// const newApiService = new ApiService();
+
+    apiService.searchQuery = refs.input.value;
+    console.log(apiService);
+    apiService.resetPage();
+    clearPage();
+
+    apiService.fetchGalleryCards(searchQuery)
+      .then(renderGallery).catch(errorHandler);
+  }, 500),
+)
+
+//тут лежит массив с объектами - 12шт 1стр
+
+function renderGallery(cards) {
+  refs.gallery.insertAdjacentHTML('beforeend', galleryCard(cards));
+}
+
+//с ошибками не работает
+function errorHandler() {
+  refs.gallery.innerHTML = "что-то пошло не так";
+  alert({
+  text: 'Что-то пошло не так. Введите запрос повторно.'
+  });
+  clearPage();
+}
+
+function clearPage() {
+  refs.gallery.innerHTML = '';
+}
+
+
+
 // const newLoadMoreBtn = new BtnService({
 //   selector: "[data-action='load-more']",
 //   text: "Load More",
@@ -37,11 +73,43 @@ function fetchPhotos() {
 //   text: "Show Movies",
 // });
 
-// const refs = {
-//   result: document.querySelector(".result"),
-//   errorRef: document.querySelector(".error"),
-//   // loadMoreBtn: document.querySelector("#load-more"),
-// };
 
 // newLoadMoreBtn.refs.button.addEventListener("click", onLoadMore);
 // newShowMoviesBtn.refs.button.addEventListener("click", onShowMovies);
+
+
+//При нажатии на кнопку Load more должна догружаться 
+//следующая порция изображений и рендериться вместе 
+//с предыдущими.
+
+//Страница должна автоматически плавно проскроливаться 
+//после рендера изображений, чтобы перевести пользователя 
+//на следующие загруженные изображения.Используй метод 
+//Element.scrollIntoView().
+
+const element = document.getElementById('.my-element-selector');
+element.scrollIntoView({
+  behavior: 'smooth',
+  block: 'end',
+});
+
+
+//Можно добавить плагин нотификаций, например pnotify, и показывать 
+//нотификации на результат HTTP - запросов
+
+//largeImageURL - ссылка на большое изображение.
+//Можно добавить функционал отображения большой версии изображения 
+//через плагин модального окна, например basicLightbox, при клике 
+//на изображение галереи
+
+//const basicLightbox = require('basiclightbox');
+// const instance = basicLightbox.create(`
+// 	<h1>Dynamic Content</h1>
+// 	<p>You can set the content of the lightbox with JS.</p>
+// `);
+// const instance = basicLightbox.create(
+//   document.querySelector('.gallery')
+// );
+
+//Вместо кнопки Load more можно сделать бесконечную загрузку 
+//при скроле используя Intersection Observer.

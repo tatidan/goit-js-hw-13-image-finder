@@ -1,0 +1,45 @@
+.input {
+  width: 400px;
+  padding: 20px;
+  color: blue;
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 100px;
+
+  &__text {
+    font-size: 20px;
+  }
+}
+
+.response {
+  font-size: 15px;
+  // text-align: center;
+  color: grey;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -30px;
+  margin-left: -30px;
+}
+
+.photo-card {
+  width: 30%;
+  margin-top: 30px;
+  margin-left: 30px;
+  &__img{
+    width: 100%;
+  }
+}
+* {
+  margin: 0;
+  align-items: baseline;
+}
+

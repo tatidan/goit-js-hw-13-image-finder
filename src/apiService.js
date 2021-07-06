@@ -1,18 +1,27 @@
 export default class ApiService {
   constructor() {
-    this.API_KEY = "73e9137b2a364bbb6dc0bcf09aa07979";
-    this.BASE_URL = "https://api.themoviedb.org/3/trending/movie/day";
-    this.page = 1;
+    this.searchQuery = '';
+    this.page = 1;    
   }
 
-  fetchMovies() {
-    const url = `${this.BASE_URL}?api_key=${this.API_KEY}&language=en-US&page=${this.page}`;
+  fetchGalleryCards() {
+    const options = {
+      BASE_URL: 'https://pixabay.com/api/',
+      API_KEY: '22378811-a58ebb6e61fd3d97b045a8b50',
+    }
+
+    const url = `${options.BASE_URL}?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${options.API_KEY}`;
     return fetch(url).then((res) => {
       if (res.ok) {
         return res.json();
       }
       return Promise.reject("Something went wrong");
-    });
+    }).then(data => {
+      console.log(data.hits);
+      //тут все работает
+      this.incrementPage();
+      return data.hits;
+    })
   }
 
   incrementPage() {
@@ -21,5 +30,12 @@ export default class ApiService {
 
   resetPage() {
     this.page = 1;
+  }
+
+  get query() {
+    return this.searchQuery;
+  }
+  set query(newQuery) {
+    this.searchQuery = newQuery;
   }
 }
