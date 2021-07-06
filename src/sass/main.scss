@@ -1,9 +1,9 @@
 .input {
   width: 400px;
-  padding: 25px;
-  color: blue;
-  font-size: 20px;
-vertical-align: middle;
+  padding: 15px;
+  color: rgb(13, 110, 110);
+  font-size: 25px;
+  vertical-align: middle;
   margin-bottom: 30px;
 }
 .search-form {
@@ -19,7 +19,7 @@ vertical-align: middle;
 }
 
 .response {
-  font-size: 15px;
+  font-size: 20px;
   // text-align: center;
   color: grey;
 }
@@ -32,15 +32,153 @@ vertical-align: middle;
 }
 
 .photo-card {
+  position: relative;
   width: 30%;
   margin-top: 30px;
   margin-left: 30px;
-  &__img{
+  box-shadow: 0px 8px 30px rgba(60, 217, 223, 0.2);
+  &__img {
     width: 100%;
+    cursor: pointer;
   }
 }
+// * {
+//   outline: 1px solid red;
+// }
+.stats {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  color: rgba(174, 226, 209, 0.7);
+  text-shadow: 0px 2px 2px rgba(46, 46, 46, 0.5);
+  //  color: rgba(174, 226, 209, 0.7);
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.stats-item,
+.material-icons {
+  vertical-align: middle;
+  // margin-right: 10%;
+  // justify-content: space-evenly;
+}
+
 * {
   margin: 0;
   align-items: baseline;
 }
 
+*:focus {
+  border-color: transparent;
+}
+
+button {
+  position: fixed;
+  bottom: 0%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  padding: 0px;
+  margin-left: 0;
+  z-index: 5;
+
+  display: block;
+  text-decoration: none;
+
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  width: 140px;
+  height: 44px;
+  border-color: transparent;
+  border-radius: 22px;
+  cursor: pointer;
+
+  &:hover {
+    background: grey;
+    color: #fff;
+    outline: 2px solid transparent;
+  }
+
+  @media screen and (min-width: 768px) {
+    & {
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 62px;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    & {
+      margin-left: 42px;
+      margin-top: 44px;
+    }
+  }
+}
+
+button.btn-service.is-hidden {
+  display: none;
+}
+
+button.btn-service > .spinner-grow.is-hidden {
+  display: none;
+}
+
+/* Button GO TO UP */
+#back-top {
+  position: fixed;
+  bottom: 0%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  padding: 0px;
+  margin-left: 0;
+  z-index: 5;
+}
+#back-top a {
+  display: block;
+  text-decoration: none;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  background-color: rgba(194, 194, 194, 0.4);
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  width: 60px;
+  height: 44px;
+  border-radius: 22px;
+  border: none;
+  outline: 2px solid transparent;
+}
+
+#back-top a:hover {
+  background: grey;
+  -webkit-transition: all linear 0.2s;
+  -moz-transition: all linear 0.2s;
+  -ms-transition: all linear 0.2s;
+  -o-transition: all linear 0.2s;
+  transition: all linear 0.2s;
+  color: #fff;
+}
+
+.submitBtn {
+  display: block;
+  text-decoration: none;
+
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  width: 140px;
+  height: 44px;
+  border-color: transparent;
+  border-radius: 22px;
+  cursor: pointer;
+}
