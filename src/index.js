@@ -11,8 +11,6 @@ import BtnService from './btn-service';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
-defaultModules.set(PNotifyMobile, {});
-
 const refs = {
   searchForm: document.querySelector('#search-form'),
   input: document.querySelector('.input'),
@@ -23,59 +21,61 @@ const refs = {
 };
 
 const apiService = new ApiService();
+defaultModules.set(PNotifyMobile, {});
 
-refs.searchForm.addEventListener(
-  'input',
-  debounce(() => {
-    if (!refs.input.value) {
-      refs.gallery.innerHTML = '';
-      return;
-    }
+// refs.searchForm.addEventListener(
+//   'input',
+//   debounce(() => {
+//     if (!refs.input.value) {
+//       refs.gallery.innerHTML = '';
+//       return;
+//     }
 
-    const searchQuery = `${refs.input.value}`;
-    apiService.searchQuery = refs.input.value;
-    apiService.resetPage();
-    newLoadMoreBtn.hide();
-    clearPage();
+//     const searchQuery = `${refs.input.value}`;
+//     apiService.searchQuery = refs.input.value;
+//     apiService.resetPage();
+//     newLoadMoreBtn.hide();
+//     clearPage();
 
-    apiService
-      .fetchGalleryCards(searchQuery)
-      .then(cards => {
-        if (!cards.length) {
-          throw new Error();
-        }
-        renderGallery(cards);
-      })
-      .catch(errorHandler);
-  }, 500),
-);
+//     apiService
+//       .fetchGalleryCards(searchQuery)
+//       .then(cards => {
+//         if (!cards.length) {
+//           throw new Error();
+//         }
+//         renderGallery(cards);
+//       })
+//       .catch(errorHandler);
+//   }, 500),
+// );
 
-// refs.submitBtn.addEventListener('submit', onSubmit);
+document.addEventListener('submit', onSubmit);
 
-// function onSubmit(e) {
-//   e.preventDefault();
+function onSubmit(event) {
+  event.preventDefault();
 
-//   if (!refs.input.value) {
-//     refs.gallery.innerHTML = '';
-//     return;
-//   }
+  if (!refs.input.value) {
+    refs.gallery.innerHTML = '';
+    return;
+  }
 
-//   const searchQuery = `${refs.input.value}`;
-//   apiService.searchQuery = refs.input.value;
-//   apiService.resetPage();
-//   newLoadMoreBtn.hide();
-//   clearPage();
+  const searchQuery = `${refs.input.value}`;
+  apiService.searchQuery = refs.input.value;
 
-//   apiService
-//     .fetchGalleryCards(searchQuery)
-//     .then(cards => {
-//       if (!cards.length) {
-//         throw new Error();
-//       }
-//       renderGallery(cards);
-//     })
-//     .catch(errorHandler);
-// }
+  apiService.resetPage();
+  newLoadMoreBtn.hide();
+  clearPage();
+
+  apiService
+    .fetchGalleryCards(searchQuery)
+    .then(cards => {
+      if (!cards.length) {
+        throw new Error();
+      }
+      renderGallery(cards);
+    })
+    .catch(errorHandler);
+}
 
 function renderGallery(cards) {
   refs.gallery.insertAdjacentHTML('beforeend', galleryCard(cards));
@@ -112,35 +112,18 @@ function onLoadMore(e) {
   apiService.fetchGalleryCards().then(renderGallery).catch(errorHandler);
 }
 
-//Страница должна автоматически плавно проскроливаться
-//после рендера изображений, чтобы перевести пользователя
-//на следующие загруженные изображения.Используй метод
-//Element.scrollIntoView().
-
-//думаю, что функция пока не работает
 function handleButtonClick() {
   refs.anchor.scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
 document.querySelector('.gallery').onclick = e => {
-  console.log(e.currentTarget);
   if (e.target.nodeName !== 'IMG') {
     return;
   }
   const largeImg = e.target.dataset.src;
 
-  basicLightbox
-    .create(
-      `
-		<img width="100vw" height="auto" src="${largeImg}">
-	`,
-    )
-    .show();
+  basicLightbox.create(`<img width="100vw" height="auto" src="${largeImg}">`).show();
 };
-
-//!!!- нужно убрать скролл pnotify-сообщений
-
-//!!! - к largeImg можно добавить возврат по escape
 
 //Вместо кнопки Load more можно сделать бесконечную загрузку
 //при скроле используя Intersection Observer.====== не реализовано

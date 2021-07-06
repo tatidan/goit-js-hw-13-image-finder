@@ -90,7 +90,7 @@
   border-color: transparent;
 }
 
-button {
+.btn {
   position: fixed;
   bottom: 0%;
   left: 10%;
@@ -107,18 +107,18 @@ button {
   width: 140px;
   height: 44px;
   border-color: transparent;
-  border-radius: 22px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
-button:hover {
+.btn:hover {
   background: grey;
   color: #fff;
   outline: 2px solid transparent;
 }
 
 @media screen and (min-width: 768px) {
-  button {
+  .btn {
     font-size: 16px;
     font-weight: 700;
     margin-top: 62px;
@@ -126,17 +126,17 @@ button:hover {
 }
 
 @media screen and (min-width: 1280px) {
-  button {
+  .btn {
     margin-left: 42px;
     margin-top: 44px;
   }
 }
 
-button.btn-service.is-hidden {
+.btn.btn-service.is-hidden {
   display: none;
 }
 
-button.btn-service > .spinner-grow.is-hidden {
+.btn.btn-service > .spinner-grow.is-hidden {
   display: none;
 }
 
@@ -173,7 +173,7 @@ button.btn-service > .spinner-grow.is-hidden {
   font-weight: 700;
   width: 60px;
   height: 44px;
-  border-radius: 22px;
+  border-radius: 12px;
   border: none;
   outline: 2px solid transparent;
 }
@@ -183,5 +183,20 @@ button.btn-service > .spinner-grow.is-hidden {
   -webkit-transition: all linear 0.2s;
   transition: all linear 0.2s;
   color: #fff;
+}
+
+.submitBtn {
+  display: block;
+  text-decoration: none;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  width: 140px;
+  height: 44px;
+  border-color: transparent;
+  border-radius: 12px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */
