@@ -14,42 +14,43 @@
   </head>
 
   <body>
-    <form class="search-form" id="search-form">
-      <input
-        class="input"
-        type="text"
-        name="query"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <div>
-        <button type="submit" class="submitBtn button" value="Submit">SUBMIT</button>
+    <div class="container">
+      <form class="search-form" id="search-form">
+        <input
+          class="input"
+          type="text"
+          name="query"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <div>
+          <button type="submit" class="submitBtn button" value="Submit">SEARCH</button>
+        </div>
+      </form>
+
+      <div class="response">
+        <ul class="gallery" id="gallery">
+          <!-- Список <li> с карточками изображений -->
+        </ul>
       </div>
-    </form>
 
-    <div class="response">
-      <ul class="gallery" id="gallery">
-        <!-- Список <li> с карточками изображений -->
-      </ul>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-info is-hidden btn-service" type="button" data-action="load-more">
+          <span
+            class="spinner-grow spinner-grow-sm is-hidden"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          <span class="label">Load More</span>
+        </button>
+      </div>
+
+      <div id="back-top">
+        <a href="#">UP</a>
+      </div>
+
+      <div class="anchor"></div>
     </div>
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-      <button class="btn btn-info is-hidden btn-service" type="button" data-action="load-more">
-        <span
-          class="spinner-grow spinner-grow-sm is-hidden"
-          role="status"
-          aria-hidden="true"
-        ></span>
-        <span class="label">Load More</span>
-      </button>
-    </div>
-
-    <div id="back-top">
-      <a href="#">UP</a>
-    </div>
-
-    <div class="anchor"></div>
-
     <script src="./index.js"></script>
   </body>
 </html>

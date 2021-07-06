@@ -1,10 +1,46 @@
+.container {
+  min-width: 320px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
 .input {
-  width: 400px;
+  width: 200px;
+  height: 30px;
   padding: 15px;
   color: #0d6e6e;
-  font-size: 25px;
+  font-size: 15px;
   vertical-align: middle;
   margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .input {
+    width: 300px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .input {
+    width: 400px;
+    height: 50px;
+    font-size: 25px;
+  }
 }
 
 .search-form {
@@ -25,12 +61,36 @@
 }
 
 .search-form__text {
-  font-size: 20px;
+  font-size: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .search-form__text {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search-form__text {
+    font-size: 20px;
+  }
 }
 
 .response {
-  font-size: 20px;
+  font-size: 10px;
   color: grey;
+}
+
+@media screen and (min-width: 768px) {
+  .response {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .response {
+    font-size: 20px;
+  }
 }
 
 .gallery {
@@ -39,22 +99,38 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-top: -30px;
-  margin-left: -30px;
+  margin-top: -15px;
+  margin-left: -15px;
 }
 
 .photo-card {
   position: relative;
-  width: 30%;
-  margin-top: 30px;
-  margin-left: 30px;
+  width: 40%;
+  margin-top: 15px;
+  margin-left: 15px;
   -webkit-box-shadow: 0px 8px 30px rgba(60, 217, 223, 0.2);
           box-shadow: 0px 8px 30px rgba(60, 217, 223, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .photo-card {
+    width: 30%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .photo-card {
+    width: 30%;
+  }
 }
 
 .photo-card__img {
   width: 100%;
   cursor: pointer;
+}
+
+* {
+  outline: 1px solid red;
 }
 
 .stats {
@@ -93,7 +169,7 @@
 .btn {
   position: fixed;
   bottom: 0%;
-  left: 10%;
+  left: 15%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   padding: 0px;
@@ -102,10 +178,10 @@
   display: block;
   text-decoration: none;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
-  width: 140px;
-  height: 44px;
+  width: 100px;
+  height: 30px;
   border-color: transparent;
   border-radius: 12px;
   cursor: pointer;
@@ -119,16 +195,17 @@
 
 @media screen and (min-width: 768px) {
   .btn {
-    font-size: 16px;
-    font-weight: 700;
-    margin-top: 62px;
+    font-size: 14px;
+    width: 120px;
+    height: 35px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .btn {
-    margin-left: 42px;
-    margin-top: 44px;
+    font-size: 16px;
+    width: 140px;
+    height: 40px;
   }
 }
 
@@ -140,7 +217,7 @@
   display: none;
 }
 
-/* Button GO TO UP */
+/* Button TO-GO-UP */
 #back-top {
   position: fixed;
   bottom: 0%;
@@ -169,13 +246,29 @@
   cursor: pointer;
   background-color: rgba(194, 194, 194, 0.4);
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
-  width: 60px;
-  height: 44px;
+  width: 40px;
+  height: 30px;
   border-radius: 12px;
   border: none;
   outline: 2px solid transparent;
+}
+
+@media screen and (min-width: 768px) {
+  #back-top a {
+    font-size: 14px;
+    width: 50px;
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #back-top a {
+    font-size: 16px;
+    width: 60px;
+    height: 40px;
+  }
 }
 
 #back-top a:hover {
@@ -191,12 +284,28 @@
   margin-left: auto;
   margin-right: auto;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 700;
-  width: 140px;
-  height: 44px;
+  width: 100px;
+  height: 30px;
   border-color: transparent;
   border-radius: 12px;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .submitBtn {
+    font-size: 16px;
+    width: 120px;
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .submitBtn {
+    font-size: 16px;
+    width: 140px;
+    height: 40px;
+  }
 }
 /*# sourceMappingURL=main.css.map */
