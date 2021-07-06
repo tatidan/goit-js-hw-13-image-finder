@@ -1,7 +1,28 @@
 //import './sass/main.scss';
 console.log('check connection');
-// import config from './config.json';
+//import config from './config.json';
 
+const BASE_URL = 'https://pixabay.com/api/';
+
+const options = {
+webformatURL,
+largeImageURL,
+likes,
+views,
+comments,
+downloads,
+  // headers: {
+  //   "Content-Type": "application/json",
+  // }
+};
+
+function fetchPhotos() {
+  return fetch(`${BASE_URL}?`).then(res => res.json()).then(console.log);
+ }
+
+ function fetchPhotosById(photoId) {
+  return fetch(`config.url + / + ${id}`).then(res => res.json()).then(console.log);
+ }
 
 // import ApiService from "./apiService";
 
