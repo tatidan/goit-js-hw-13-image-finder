@@ -4,6 +4,7 @@ import galleryCard from './templates/galleryCard.hbs';
 import ApiService from "./apiService";
 import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 import * as PNotifyMobile from '@pnotify/mobile';
 import '@pnotify/mobile/dist/PNotifyMobile.css';
 import * as basicLightbox from 'basiclightbox'
@@ -38,19 +39,26 @@ refs.searchForm.addEventListener(
     clearPage();
 
     apiService.fetchGalleryCards(searchQuery)
-      .then(renderGallery).catch(errorHandler);
+      .then((cards) => {
+        if (!cards.length) {
+          throw new Error();
+         }
+        renderGallery(cards);
+      }
+        ).catch(errorHandler);
   }, 500),
 )
 
 //тут лежит массив с объектами - 12шт 1стр
 
-function renderGallery(cards) {
+function renderGallery(cards) {  
   refs.gallery.insertAdjacentHTML('beforeend', galleryCard(cards));
 }
 
 //с ошибками не работает
 function errorHandler() {
   refs.gallery.innerHTML = "что-то пошло не так";
+  
   alert({
   text: 'Что-то пошло не так. Введите запрос повторно.'
   });
@@ -87,11 +95,11 @@ function clearPage() {
 //на следующие загруженные изображения.Используй метод 
 //Element.scrollIntoView().
 
-const element = document.getElementById('.my-element-selector');
-element.scrollIntoView({
-  behavior: 'smooth',
-  block: 'end',
-});
+// const element = document.getElementById('.my-element-selector');
+// element.scrollIntoView({
+//   behavior: 'smooth',
+//   block: 'end',
+// });
 
 
 //Можно добавить плагин нотификаций, например pnotify, и показывать 
