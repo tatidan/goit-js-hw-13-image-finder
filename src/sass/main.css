@@ -148,7 +148,15 @@
 
 .stats-item,
 .material-icons {
-  vertical-align: middle;
+  display: none;
+}
+
+@media screen and (min-width: 1280px) {
+  .stats-item,
+  .material-icons {
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 
 * {
