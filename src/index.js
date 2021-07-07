@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import debounce from 'lodash.debounce';
+//import debounce from 'lodash.debounce';
 import galleryCard from './templates/galleryCard.hbs';
 import ApiService from './apiService';
 import { alert, defaultModules } from '@pnotify/core';
@@ -49,9 +49,9 @@ defaultModules.set(PNotifyMobile, {});
 //   }, 500),
 // );
 
-document.addEventListener('submit', onSubmit);
+document.addEventListener('submit', onSearch);
 
-function onSubmit(event) {
+function onSearch(event) {
   event.preventDefault();
 
   if (!refs.input.value) {
